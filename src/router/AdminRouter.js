@@ -1,8 +1,11 @@
 // ADMIN USER ROUTES
 import React from 'react'
 import { Routes, Route } from "react-router-dom";
-import { Auth } from "../pages/admin";
 import { AdminLayout } from "../layouts";
+import { Auth, Users, Blog } from "../pages/admin";
+
+
+const user = { email: "whatever@gmail.com" };
 
 export function AdminRouter() {
 
@@ -14,10 +17,24 @@ export function AdminRouter() {
             </Layout>
         )
     }
-    
+
     return (
         <Routes>
-            <Route path="/admin/*" element={loadLayout(AdminLayout, Auth)} />
+            {!user ? ( //if user is empty it means user is not logged it then he can only enters to the Auth page.
+                <Route path="/admin/*" element={loadLayout(AdminLayout, Auth)} />
+            ) : (
+                <>
+                    {["/admin", "/admin/blog"].map((path) => ( //Mapping accessible paths
+                        <Route
+                            key={path}
+                            path={path}
+                            element={loadLayout(AdminLayout, Blog)} //Both /admin and /adming/blog go to blog page.
+                        />
+                    ))}
+                    <Route path="/admin/users" element={loadLayout(AdminLayout, Users)} />
+                </>
+            )}
+
         </Routes>
     )
 }
