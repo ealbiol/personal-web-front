@@ -1,24 +1,31 @@
 import React, { useState } from 'react';
 import { Form } from "semantic-ui-react";
 import { useFormik } from "formik";
-import { initialValues } from "./RegisterForm.form";
+import { Auth } from "../../../../api"; //Importing class Auth API
+import { initialValues, validationSchema } from "./RegisterForm.form";
 import "./RegisterForm.scss";
 
-export function RegisterForm() {
+const authController = new Auth();
 
+export function RegisterForm(props) {
+    const { openLogin } = props;
     // Error Message State
     const [error, setError] = useState("")
 
-    // Form framework
+    // Form framework. Function onSubmit to be executed when form is filled
     const formik = useFormik({
-        // Initial empty value
-        initialValues: initialValues(),
-        // Function to be executed when form is filled
+        initialValues: initialValues(), // Initial empty value
+
+        validationSchema: validationSchema(), // Calling Yup Validition function
+        validateOnChange: false, // So that form is not seend when user is still filling fields.
+
         onSubmit: async (formValue) => { // formValue: data sent by user
             try {
-                console.log(formValue);
+                setError("");
+                await authController.register(formValue) //Connection to api fetch
+                openLogin() // Open Login window after submit
             } catch (error) {
-                console.error(error);
+                setError("Server Error");
             }
         }
     })
@@ -26,13 +33,14 @@ export function RegisterForm() {
     return (
         <Form
             className='register-form'
-            onSubmit={formik.handleSubmit} //Formik function executed onsubmit
+            onSubmit={formik.handleSubmit} // Formik function executed onsubmit
         >
             <Form.Input
                 name="email"
                 placeholder="Email"
-                onChange={formik.handleChange} //It will search the key name in the state of the fornik state (initialValues) and it will replace its content.
+                onChange={formik.handleChange} // It will search the key name in the state of the fornik state (initialValues) and it will replace its content.
                 value={formik.values.email}
+                error={formik.errors.email} // Yup validation
             />
             <Form.Input
                 name="password"
@@ -40,6 +48,7 @@ export function RegisterForm() {
                 placeholder="Password"
                 onChange={formik.handleChange}
                 value={formik.values.password}
+                error={formik.errors.password}
             />
             <Form.Input
                 name="repeatPassword"
@@ -47,14 +56,16 @@ export function RegisterForm() {
                 placeholder="Repeat Password"
                 onChange={formik.handleChange}
                 value={formik.values.repeatPassword}
+                error={formik.errors.repeatPassword}
             />
             <Form.Checkbox
                 name="conditionsAccepted"
-                label="I read and accept the privacy policy"
+                label="I read and accept the privacy policy."
                 onChange={(_, data) =>
                     formik.setFieldValue("conditionsAccepted", data.checked) //Looks for the field we stated.
                 }
                 checked={formik.values.conditionsAccepted}
+                error={formik.errors.conditionsAccepted}
             />
             <Form.Button
                 type="submit"
