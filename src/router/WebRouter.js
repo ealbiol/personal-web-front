@@ -1,8 +1,9 @@
 // PUBLIC USER ZONE ROUTES
 import React from 'react';
 import { Routes, Route } from "react-router-dom";
-import { Home } from "../pages/web";
 import { ClientLayout } from "../layouts"
+import { Home, Contact, Courses, Blog, Post } from "../pages/web";
+
 
 export function WebRouter() {
     // Function charging layout:
@@ -16,6 +17,12 @@ export function WebRouter() {
     return (
         <Routes>
             <Route path="/" element={loadLayout(ClientLayout, Home)} />
+            <Route path="/courses" element={loadLayout(ClientLayout, Courses)} />
+            <Route path="/contact" element={loadLayout(ClientLayout, Contact)} />
+            <Route path="/blog" element={loadLayout(ClientLayout, Blog)} />
+            {/*Dynamic Route with variable 'path'.*/}
+            <Route path="/blog/:path" element={loadLayout(ClientLayout, Post)} />
+
         </Routes>
     )
 }
