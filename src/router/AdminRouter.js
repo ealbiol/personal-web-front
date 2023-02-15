@@ -5,7 +5,7 @@ import { AdminLayout } from "../layouts";
 import { Auth, Users, Blog, Courses, Menu, Newsletter } from "../pages/admin";
 
 
-const user = { email: "whatever@gmail.com" };
+const user = null;
 
 export function AdminRouter() {
 
@@ -21,7 +21,7 @@ export function AdminRouter() {
     return (
         <Routes>
             {!user ? ( //if user is empty it means user is not logged it then he can only enters to the Auth page.
-                <Route path="/admin/*" element={loadLayout(AdminLayout, Auth)} />
+                <Route path="/admin/*" element={<Auth/>} />
             ) : (
                 <>
                     {["/admin", "/admin/blog"].map((path) => ( //Mapping accessible paths

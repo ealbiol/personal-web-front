@@ -1,9 +1,43 @@
-import React from 'react'
+import React, { useState } from 'react';
+import { Tab } from "semantic-ui-react"
+import { Icon } from "../../../assets"
+import "./Auth.scss";
 
 export function Auth() {
-  return (
-    <div>
-        <h1>We are in Auth</h1>
-    </div>
-  )
+
+    const [activeIndex, setActiveIndex] = useState(1);
+
+    const openLogin = () => setActiveIndex(0)
+
+    // Semantic-ui Tab's configuration:
+    const panes = [
+        {
+            menuItem: "Enter",
+            render: () => (
+                <Tab.Pane>
+                    <h2>Login Form</h2>
+                </Tab.Pane>
+            ),
+        },
+        {
+            menuItem: "New User",
+            render: () => (
+                <Tab.Pane>
+                    <h2>Register Form</h2>
+                </Tab.Pane>
+            ),
+        },
+    ]
+
+    return (
+        <div className='auth'>
+            <Icon.LogoWhite className='logo' />
+            <Tab
+                panes={panes}
+                className="auth__forms"
+                activeIndex={activeIndex}
+                onTabChange={(_, data)=> setActiveIndex(data.activeIndex)}
+            />
+        </div>
+    )
 }
