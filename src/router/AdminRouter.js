@@ -10,7 +10,7 @@ export function AdminRouter() {
 
     //Function hook useAuth (context). This functions gives use the global states
     const { user } = useAuth();
-    console.log(useAuth());
+    //console.log(useAuth());
 
     // Function charging layout:
     const loadLayout = (Layout, Page) => {
