@@ -1,10 +1,10 @@
-// AUTHENTICATION API'S
+// AUTHENTICATION AUTH API
 import { ENV } from "../utils"; //Importing utils constants
 
 export class Auth {
     baseApi = ENV.BASE_API
 
-    // - FUNCTION NEW USER REGISTRATION
+    // - FUNCTION NEW USER REGISTRATION / POST
     async register(data) { // It receives form that entered by user: email, password, checkbox
         try {
             // API_ROUTES.REGISTER is the same endpoint/url as in insomnia: auth/register
@@ -27,7 +27,7 @@ export class Auth {
             // If result goes wrong throw error:
             if (response.status !== 200) throw result;
 
-            //If all good return result:
+            //If all good return result (user data):
             return result;
         } catch (error) {
             throw error;

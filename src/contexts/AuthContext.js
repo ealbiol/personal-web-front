@@ -1,11 +1,14 @@
 // CONTEXT CREATION: Move states globally through all app.
-import { useState, useEffect, createContext } from "react";
 
+import { useState, useEffect, createContext } from "react";
+import { User } from "../api/user"
 export const AuthContext = createContext();
 
-export function AuthProvider(props) {
-    const { children } = props; // The son of the context
+const userController = new User();
 
+export function AuthProvider(props) {
+    // The son of the context
+    const { children } = props;
     // User state: If null means user is not logged in. If value means is logged in.
     const [user, setUser] = useState(null)
     // Token State: to be used in http petitions
@@ -19,7 +22,9 @@ export function AuthProvider(props) {
     //Login Function: it needs to receive the accessToken
     const login = async (accessToken) => {
         try {
-            setUser({username: "Xavi"})
+            const response = await userController.getMe(accessToken);
+            delete response.password
+            setUser({ response }) //User data received
             setToken(accessToken) //accessToken data received in LoginForm.js (login is made a global function)
         } catch (error) {
             console.log(error);
