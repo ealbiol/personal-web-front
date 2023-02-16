@@ -3,11 +3,13 @@ import React from 'react';
 import { Form } from "semantic-ui-react";
 import { useFormik } from "formik";
 import { Auth } from "../../../../api"
+import { useAuth } from "../../../../hooks/useAuth"; //Importing context
 import { initialValues, validationSchema } from "./LoginForm.form"
 
 const authController = new Auth();
 
 export function LoginForm() {
+    const { login } = useAuth(); //Getting context global function login
 
     const formik = useFormik({
         // We pass initial values
@@ -19,7 +21,7 @@ export function LoginForm() {
         onSubmit: async (formValue) => {
             try {
                 const response = await authController.login(formValue);
-                console.log(response);
+                login(response.access) // It takes the access token
             } catch (error) {
                 console.error(error);
             }

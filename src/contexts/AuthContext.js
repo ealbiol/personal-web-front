@@ -18,8 +18,12 @@ export function AuthProvider(props) {
 
     //Login Function: it needs to receive the accessToken
     const login = async (accessToken) => {
-        console.log("Login Context");
-        console.log(accessToken);
+        try {
+            setUser({username: "Xavi"})
+            setToken(accessToken) //accessToken data received in LoginForm.js (login is made a global function)
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     //All we export here will be accessible in any component:
