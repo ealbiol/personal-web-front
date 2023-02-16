@@ -8,5 +8,9 @@ export const ENV = {
         REGISTER: "auth/register", // API_ROUTES.REGISTER is the same endpoint/url as in insomnia: auth/register
         LOGIN: "auth/login",
         USER_ME: "user/me",
+    },
+    JWT: {
+        ACCESS: "access",
+        REFRESH: "refresh",
     }
 }

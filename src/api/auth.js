@@ -36,7 +36,7 @@ export class Auth {
 
 
     // - FUNCTION LOGIN
-    async login(data) { 
+    async login(data) {
         try {
             const url = `${this.baseApi}/${ENV.API_ROUTES.LOGIN}`
             const params = {
@@ -50,11 +50,44 @@ export class Auth {
             const response = await fetch(url, params);
             const result = await response.json();
 
-            if(response.status !== 200) throw result;
+            if (response.status !== 200) throw result;
 
             return result;
         } catch (error) {
             throw error;
         }
+    }
+
+    // FUNCTIONS LOCALSTORAGE - ACCESS TOKEN
+
+    // FUNCTION SAVING ACCESS TOKEN IN LOCALSTORAGE
+    setAccessToken(token) {
+        localStorage.setItem(ENV.JWT.ACCESS, token); // ENV.JWT.ACCESS const === "access". Made so that if we change the name we don't have to change it everywhere.
+    }
+
+    // FUNCTION TO OBTAIN ACCESS TOKEN FROM LOCAL STORAGE
+    getAccessToken() {
+        return localStorage.getItem(ENV.JWT.ACCESS);
+        // We save "access": "token code"
+    }
+
+
+    // FUNCTIONS LOCALSTORAGE - REFRESH TOKEN
+
+    // FUNCTION SAVING REFRESH TOKEN IN LOCALSTORAGE
+    setRefreshToken(token) {
+        localStorage.setItem(ENV.JWT.REFRESH, token); // ENV.JWT.REFRESH const === "refresh". Made so that if we change the name we don't have to change it everywhere.
+    }
+
+    // FUNCTION TO OBTAIN REFRESH TOKEN FROM LOCAL STORAGE
+    getRefreshToken() {
+        return localStorage.getItem(ENV.JWT.REFRESH);
+    }
+
+
+    // FUNCTION DELETING ALL TOKENS
+    removeTokens(){
+        localStorage.removeItem(ENV.JWT.ACCESS);
+        localStorage.removeItem(ENV.JWT.REFRESH);
     }
 }

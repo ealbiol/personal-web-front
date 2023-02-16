@@ -24,6 +24,7 @@ export function AuthProvider(props) {
         try {
             const response = await userController.getMe(accessToken);
             delete response.password
+            console.log("TOKEN", accessToken);
             setUser({ response }) //User data received
             setToken(accessToken) //accessToken data received in LoginForm.js (login is made a global function)
         } catch (error) {
@@ -35,7 +36,7 @@ export function AuthProvider(props) {
     const data = {
         accessToken: token, //token state
         user, //user state
-        login //login function
+        login, //login function
     };
 
     //Provider has a property value where we add what we want to export

@@ -3,7 +3,7 @@ import React from 'react';
 import { Form } from "semantic-ui-react";
 import { useFormik } from "formik";
 import { Auth } from "../../../../api"
-import { useAuth } from "../../../../hooks/useAuth"; //Importing context
+import { useAuth } from "../../../../hooks"; //Importing context
 import { initialValues, validationSchema } from "./LoginForm.form"
 
 const authController = new Auth();
@@ -21,7 +21,11 @@ export function LoginForm() {
         onSubmit: async (formValue) => {
             try {
                 const response = await authController.login(formValue);
-                login(response.access) // It takes the access token
+
+                // Calling function to save tokens to localstorage
+                authController.setAccessToken(response.access);
+                authController.setRefreshToken(response.refresh);
+                login(response.access) // Making login: It takes the access token
             } catch (error) {
                 console.error(error);
             }
