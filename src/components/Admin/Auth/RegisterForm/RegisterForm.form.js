@@ -1,10 +1,10 @@
-// FORM CONFIGURATION
+// REGISTER FORM CONFIGURATION
 
 //Yup: Form validation framework
 import * as Yup from "yup";
 
 
-// Function that returns an object with the initial data of the form:
+// Function that returns an object with the initial empty data of the form:
 export function initialValues() {
     return {
         email: "",

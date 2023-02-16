@@ -5,6 +5,8 @@ import { Auth } from "../../../../api"; //Importing class Auth API
 import { initialValues, validationSchema } from "./RegisterForm.form";
 import "./RegisterForm.scss";
 
+// REGISTER FORM COMPONENT
+
 const authController = new Auth();
 
 export function RegisterForm(props) {
@@ -12,7 +14,7 @@ export function RegisterForm(props) {
     // Error Message State
     const [error, setError] = useState("")
 
-    // Form framework. Function onSubmit to be executed when form is filled
+    // Form formik framework. Function onSubmit to be executed when form is filled
     const formik = useFormik({
         initialValues: initialValues(), // Initial empty value
 
@@ -22,7 +24,7 @@ export function RegisterForm(props) {
         onSubmit: async (formValue) => { // formValue: data sent by user
             try {
                 setError("");
-                await authController.register(formValue) //Connection to api fetch
+                await authController.register(formValue) //Connection to api fetch.
                 openLogin() // Open Login window after submit
             } catch (error) {
                 setError("Server Error");

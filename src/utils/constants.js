@@ -4,7 +4,8 @@ export const ENV = {
     BASE_PATH: `http://${SERVER_IP}`,
     BASE_API: `http://${SERVER_IP}/api/v1`,
     API_ROUTES: {
-        //ENDPOINTS ROUTES
+        //ENDPOINTS ROUTES: Matcing the backend ones
         REGISTER: "auth/register", // API_ROUTES.REGISTER is the same endpoint/url as in insomnia: auth/register
+        LOGIN: "auth/login",
     }
 }
