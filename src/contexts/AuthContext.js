@@ -2,6 +2,7 @@
 
 import { useState, useEffect, createContext } from "react";
 import { User, Auth } from "../api"
+import { hasExpiredToken } from "../utils"
 
 const userController = new User();
 const authController = new Auth();
@@ -26,11 +27,47 @@ export function AuthProvider(props) {
             const accessToken = authController.getAccessToken();
             const refreshToken = authController.getRefreshToken();
 
-            await login(accessToken);
+            // Checking if tokens exist
+            if (!accessToken || !refreshToken) {
+                logout(); //Calling function to remove tokens and user.
+                setLoading(false); //closing session
+                return;
+            }
+
+            //Calling function to check if token expired
+            // if access token expired:
+            if (hasExpiredToken(accessToken)) {
+                // if refresh token expired:
+                if (hasExpiredToken(refreshToken)) {
+                    logout();
+                } else {
+                    // We call reLogin function because before login we have to refresh the access token
+                    await reLogin(refreshToken)
+                }
+            } else {
+                // if it hasn't expired
+                await login(accessToken);
+            }
 
             setLoading(false);
         })();
     }, []);
+
+    // Function to refresh refresh token
+    const reLogin = async (refreshToken) => {
+        try {
+            // Getting new access token
+            const { accessToken } = await authController.refreshAccessToken(
+                refreshToken
+            );
+            // Updating access token in localstorage
+            authController.setAccessToken(accessToken)
+            await login(accessToken) //Giving new access token
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
 
     //Login Function: it needs to receive the accessToken
     const login = async (accessToken) => {
@@ -44,6 +81,13 @@ export function AuthProvider(props) {
         }
     }
 
+    //Function to close session
+    const logout = () => {
+        setUser(null);
+        setToken(null);
+        authController.removeTokens(); //Using function to remove Tokens.
+    }
+
     //All we export here will be accessible in any component:
     const data = {
         accessToken: token, //token state
@@ -51,6 +95,7 @@ export function AuthProvider(props) {
         login, //login function
     };
 
+    // As long as loading is true (original state) no session data is given.
     if (loading) return null
 
     //Provider has a property value where we add what we want to export

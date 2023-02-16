@@ -58,6 +58,31 @@ export class Auth {
         }
     }
 
+    // FUNCTION TO REFRESH ACCESS TOKEN
+    async refreshAccessToken(refreshToken) {
+        try {
+            const url = `${this.baseApi}/${ENV.API_ROUTES.REFRESH_ACCESS_TOKEN}`;
+            const params = {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    token: refreshToken,
+                })
+            }
+            const response = await fetch(url, params);
+            const result = await response.json();
+
+            if (response.status !== 200) throw result
+
+            return result //Obtaining new refresh token
+        } catch (error) {
+            throw error
+        }
+    }
+
+
     // FUNCTIONS LOCALSTORAGE - ACCESS TOKEN
 
     // FUNCTION SAVING ACCESS TOKEN IN LOCALSTORAGE
@@ -86,7 +111,7 @@ export class Auth {
 
 
     // FUNCTION DELETING ALL TOKENS
-    removeTokens(){
+    removeTokens() {
         localStorage.removeItem(ENV.JWT.ACCESS);
         localStorage.removeItem(ENV.JWT.REFRESH);
     }
