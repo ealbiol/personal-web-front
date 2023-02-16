@@ -91,8 +91,9 @@ export function AuthProvider(props) {
     //All we export here will be accessible in any component:
     const data = {
         accessToken: token, //token state
-        user, //user state
-        login, //login function
+        user, // user state
+        login, // login function
+        logout // logout function
     };
 
     // As long as loading is true (original state) no session data is given.
