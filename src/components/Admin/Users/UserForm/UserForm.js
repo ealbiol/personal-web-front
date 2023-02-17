@@ -1,9 +1,11 @@
 // USER FORM to create or amend users
-import React from 'react'
+import React, { useCallback } from 'react'
 import { Form, Image } from "semantic-ui-react";
 import { useFormik } from "formik";
+import { image } from "../../../../assets"
 import { initialValues, validationSchema } from "./UserForm.form";
 import "./UserForm.scss";
+import { useDropzone } from "react-dropzone";
 
 export function UserForm(props) {
 
@@ -24,10 +26,31 @@ export function UserForm(props) {
 
     });
 
+
+    // Function when image is sent:
+    const onDrop = useCallback((acceptedFiles) => {
+        const file = acceptedFiles[0]; // Taking the path element from the array of elements.
+    formik.setFieldValue("avatar", URL.createObjectURL(file)); // To create URL of file
+    formik.setFieldValue("fileAvatar", file); // To send file to server.
+    });
+    //useDropzone configuration:
+    const { getRootProps, getInputProps } = useDropzone({
+        accept: "image/jpeg, image/png",
+        onDrop,
+    });
+    // Getting user avatar (if not default avatar)
+    const getAvatar = () => {
+        if(formik.values.fileAvatar){
+            return formik.values.avatar;
+        }
+        return image.noAvatar
+    }
+
     return (
         <Form className='user-form' onSubmit={formik.handleSubmit}>
-            <div className='user-form_avatar'>
-                <span>AVATAR</span>
+            <div className='user-form__avatar' {...getRootProps()}>
+                <input {...getInputProps()} />
+                <Image avatar size="small" src={getAvatar()} />
             </div>
 
             <Form.Group widths="equal">
@@ -59,7 +82,7 @@ export function UserForm(props) {
                     placeholder='Select a role'
                     options={roleOptions}
                     selection
-                    onChange={(_, data)=> formik.setFieldValue("role", data.value)}
+                    onChange={(_, data) => formik.setFieldValue("role", data.value)}
                     value={formik.values.role}
                     error={formik.errors.role}
                 />
