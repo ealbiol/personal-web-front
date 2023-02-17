@@ -2,14 +2,19 @@
 import React, { useCallback } from 'react'
 import { Form, Image } from "semantic-ui-react";
 import { useFormik } from "formik";
-import { image } from "../../../../assets"
+import { useDropzone } from "react-dropzone";
+import { User } from "../../../../api";
+import { useAuth } from "../../../../hooks";
+import { image } from "../../../../assets";
 import { initialValues, validationSchema } from "./UserForm.form";
 import "./UserForm.scss";
-import { useDropzone } from "react-dropzone";
+
+const userCotroller = new User();
 
 export function UserForm(props) {
 
     const { close, onReload, user } = props;
+    const { accessToken } = useAuth();
 
     // We pass the functions initialValues and validitionSchema to Formik
     const formik = useFormik({
@@ -18,7 +23,8 @@ export function UserForm(props) {
         validateOnChange: false, //Formik prop
         onSubmit: async (formValue) => { //Getting form data.
             try {
-                console.log(formValue);
+                await userCotroller.createUser(accessToken, formValue);
+                close();
             } catch (error) {
                 console.error(error);
             }
@@ -30,8 +36,8 @@ export function UserForm(props) {
     // Function when image is sent:
     const onDrop = useCallback((acceptedFiles) => {
         const file = acceptedFiles[0]; // Taking the path element from the array of elements.
-    formik.setFieldValue("avatar", URL.createObjectURL(file)); // To create URL of file
-    formik.setFieldValue("fileAvatar", file); // To send file to server.
+        formik.setFieldValue("avatar", URL.createObjectURL(file)); // To create URL of file
+        formik.setFieldValue("fileAvatar", file); // To send file to server.
     });
     //useDropzone configuration:
     const { getRootProps, getInputProps } = useDropzone({
@@ -40,7 +46,7 @@ export function UserForm(props) {
     });
     // Getting user avatar (if not default avatar)
     const getAvatar = () => {
-        if(formik.values.fileAvatar){
+        if (formik.values.fileAvatar) {
             return formik.values.avatar;
         }
         return image.noAvatar
