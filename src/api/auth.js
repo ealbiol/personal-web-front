@@ -46,7 +46,6 @@ export class Auth {
                 },
                 body: JSON.stringify(data)
             }
-
             const response = await fetch(url, params);
             const result = await response.json();
 

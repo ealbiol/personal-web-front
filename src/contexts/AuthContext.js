@@ -74,7 +74,7 @@ export function AuthProvider(props) {
         try {
             const response = await userController.getMe(accessToken);
             delete response.password
-            setUser({ response }) //User data received
+            setUser( response ) //User data received
             setToken(accessToken) //accessToken data received in LoginForm.js (login is made a global function)
         } catch (error) {
             console.log(error);
