@@ -27,6 +27,7 @@ export class User {
         }
     }
 
+    // FUNCTION CREATE USER (FROM ADMIN SITE) / POST
     async createUser(accessToken, data) { // Receiving data from the new user
         try {
             const formData = new FormData(); // Enables Multiparty since we are sending also images.
@@ -45,13 +46,34 @@ export class User {
                 headers: {
                     Authorization: `Bearer ${accessToken}`
                 },
-                body: formData,                
+                body: formData,
             };
             const response = await fetch(url, params);
             const result = await response.json();
 
             if (response.status !== 201) throw result;
-            
+
+            return result;
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    // FUNCTION TO GET USERS / GET
+    async getUsers(accessToken, active = undefined) {
+        try {
+            const url = `${this.baseApi}/${ENV.API_ROUTES.USERS}?active=${active}`;
+            const params = {
+                "headers": { //when no method is specified is GET by default.
+                    Authorization: `Bearer ${accessToken}`
+                }
+            }
+
+            const response = await fetch(url, params);
+            const result = await response.json();
+
+            if (response.status !== 200) throw result;
+
             return result;
         } catch (error) {
             throw error;
