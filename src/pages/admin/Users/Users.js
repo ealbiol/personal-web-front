@@ -1,9 +1,17 @@
 // USERS PANEL
 import React, { useState } from 'react';
-import { Tab, Button } from "semantic-ui-react"
+import { Tab, Button } from "semantic-ui-react";
+import { BasicModal } from "../../../components/Shared"
 import "./Users.scss";
 
 export function Users() {
+
+  //State to show modal
+  const [showModal, setShowModal] = useState(false);
+
+  // Function to close and open modal
+  const onOpenCloseModal = () => setShowModal((prevState) => !prevState) // same as doing !showModal ...
+
   // Tabs: semantic-ui-react own tabs configuration
   const panes = [
     {
@@ -29,11 +37,20 @@ export function Users() {
       <div className='users-page'>
         <Button
           className='users-page__add'
-          primary onClick={() => console.log("Open form")}>
+          primary onClick={onOpenCloseModal}>
           New user
         </Button>
         <Tab menu={{ secondary: true }} panes={panes} />
       </div>
+
+      {/*showModal: Here we pass the prop 'show' which is boolean and it will be received in BasicModal.js where we created the prop 'show'.*/}
+      {/*Props we send need to have the same name as the oned created where they receive them. In this case in BasicModal.js*/}
+      {/*'show' is also a property of semantic-ui-react that is by default in true*/}
+      <BasicModal
+        show={showModal}
+        close={onOpenCloseModal} title="Creating new user">
+        <h2>Creating Users Form</h2>
+      </BasicModal>
     </>
   )
 }
