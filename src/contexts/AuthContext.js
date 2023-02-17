@@ -93,7 +93,7 @@ export function AuthProvider(props) {
         accessToken: token, //token state
         user, // user state
         login, // login function
-        logout // logout function
+        logout, // logout function
     };
 
     // As long as loading is true (original state) no session data is given.
