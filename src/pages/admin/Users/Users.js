@@ -1,7 +1,8 @@
 // USERS PANEL
 import React, { useState } from 'react';
 import { Tab, Button } from "semantic-ui-react";
-import { BasicModal } from "../../../components/Shared"
+import { BasicModal } from "../../../components/Shared";
+import { UserForm } from "../../../components/Admin/Users";
 import "./Users.scss";
 
 export function Users() {
@@ -48,8 +49,9 @@ export function Users() {
       {/*'show' is also a property of semantic-ui-react that is by default in true*/}
       <BasicModal
         show={showModal}
-        close={onOpenCloseModal} title="Creating new user">
-        <h2>Creating Users Form</h2>
+        close={onOpenCloseModal} title="Creating new user"
+      >
+        <UserForm close={onOpenCloseModal}/>
       </BasicModal>
     </>
   )
