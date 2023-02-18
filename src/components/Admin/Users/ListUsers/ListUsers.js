@@ -1,14 +1,15 @@
 // LIST OF USERS IN ADMIN
 import React, { useState, useEffect } from 'react';
 import { Loader } from "semantic-ui-react";
-import { size } from "lodash";
+import { size, map } from "lodash";
 import { User } from "../../../../api";
 import { useAuth } from "../../../../hooks";
+import { UserItem } from "../UserItem";
 
 const userController = new User();
 
 export function ListUsers(props) {
-    const { usersActive } = props; // Prop name created here
+    const { usersActive, reload } = props; // Prop name created here
 
     const [users, setUsers] = useState(null);
     const { accessToken } = useAuth();
@@ -28,16 +29,11 @@ export function ListUsers(props) {
                 console.error(error);
             }
         })()
-    }, [usersActive]);
+    }, [usersActive, reload]);
 
     if (!users) return <Loader active inline="centered" />
     if (size(users) === 0) return "There are no users"
 
-
-    return (
-        <div>
-            <h2>We are seeing the users</h2>
-            <p>{usersActive ? "Activos" : "Inactivos"}</p>
-        </div>
-    )
+    //Mapping all users
+    return map(users, (user) => <UserItem key={user._id} user={user} />)
 }

@@ -9,9 +9,13 @@ export function Users() {
 
   //State to show modal
   const [showModal, setShowModal] = useState(false);
+  //Reloading users
+  const [reload, setReload] = useState(false)
 
   // Function to close and open modal
   const onOpenCloseModal = () => setShowModal((prevState) => !prevState) // same as doing !showModal ...
+  // Function to update useReload
+  const onReload = () => setReload((prevState) => !prevState);
 
   // Tabs: semantic-ui-react own tabs configuration
   const panes = [
@@ -19,7 +23,7 @@ export function Users() {
       menuItem: "Active users",
       render: () => (
         <Tab.Pane attached={false}>
-          <ListUsers usersActive={true}/>
+          <ListUsers usersActive={true} reload={reload} />
         </Tab.Pane>
       )
     },
@@ -27,7 +31,7 @@ export function Users() {
       menuItem: "Inactive users",
       render: () => (
         <Tab.Pane attached={false}>
-          <ListUsers usersActive={false}/>
+          <ListUsers usersActive={false} reload={reload} />
         </Tab.Pane>
       )
     },
@@ -51,7 +55,8 @@ export function Users() {
         show={showModal}
         close={onOpenCloseModal} title="Creating new user"
       >
-        <UserForm close={onOpenCloseModal}/>
+        {/*We pass the function onReload so that the list of users is reloaded when creating a new user*/}
+        <UserForm close={onOpenCloseModal} onReload={onReload} />
       </BasicModal>
     </>
   )
