@@ -19,7 +19,7 @@ export function UserForm(props) {
 
 
     // We pass the functions initialValues and validitionSchema to Formik
-    // CREATING NEW USER SUBMIT
+    // CREATING OR UPDATING NEW USER SUBMIT
     const formik = useFormik({
         initialValues: initialValues(user),
         validationSchema: validationSchema(user),
@@ -28,9 +28,8 @@ export function UserForm(props) {
             try {
                 if (!user) { //If user doesn't exist it will create new user and if not it will update existing user.
                     await userCotroller.createUser(accessToken, formValue);
-                } else {
-                    console.log("UPDATE");
-                    console.log(formValue);
+                } else { // Updating user
+                    await userCotroller.updateUser(accessToken, user._id, formValue)
                 }
                 onReload(); //Calling onReload function so that new user appears in list without refreshing page.
                 close();

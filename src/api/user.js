@@ -79,4 +79,42 @@ export class User {
             throw error;
         }
     }
+
+    //FUNCTION TO UPDATE USERS / PATCH
+    async updateUser(accessToken, idUser, userData) {
+        try {
+            const data = userData;
+            if (!data.password) {
+                delete data.password;
+            }
+
+            const formData = new FormData(); // Enables Multiparty since we are sending also images.
+            Object.keys(data).forEach((key) => {
+                formData.append(key, data[key]) //Iterating through every key of data: firstname, etc.
+            });
+
+            // if user adds avatar:
+            if (data.fileAvatar) {
+                formData.append("avatar", data.fileAvatar)
+            }
+
+            const url = `${ENV.BASE_API}/${ENV.API_ROUTES.USER}/${idUser}`;
+            const params = {
+                method: "PATCH",
+                headers: {
+                    Authorization: `Bearer ${accessToken}`
+                },
+                body: formData
+            };
+
+            const response = await fetch(url, params);
+            const result = await response.json();
+
+            if(response.status !== 200) throw result;
+            
+            return result;
+        } catch (error) {
+            throw error
+        }
+    }
 }

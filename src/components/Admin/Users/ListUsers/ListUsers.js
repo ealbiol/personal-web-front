@@ -9,7 +9,7 @@ import { UserItem } from "../UserItem";
 const userController = new User();
 
 export function ListUsers(props) {
-    const { usersActive, reload } = props; // Prop name created here
+    const { usersActive, reload, onReload } = props; // Prop name created here
 
     const [users, setUsers] = useState(null);
     const { accessToken } = useAuth();
@@ -35,5 +35,5 @@ export function ListUsers(props) {
     if (size(users) === 0) return "There are no users"
 
     //Mapping all users
-    return map(users, (user) => <UserItem key={user._id} user={user} />)
+    return map(users, (user) => <UserItem key={user._id} user={user} onReload={onReload} />)
 }

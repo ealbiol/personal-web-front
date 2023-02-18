@@ -8,7 +8,7 @@ import "./UserItem.scss";
 
 export function UserItem(props) {
 
-    const { user } = props;
+    const { user, onReload } = props;
     //States to manage editing user:
     const [showModal, setShowModal] = useState(false);
     const [titleModal, setTitleModal] = useState("");
@@ -51,7 +51,7 @@ export function UserItem(props) {
             <BasicModal show={showModal} close={onOpenCloseModal} title={titleModal}>
                 <UserForm
                     close={onOpenCloseModal}
-                    onReload={() => console.log("RELOAD")}
+                    onReload={onReload}
                     user={user} //Passing the user data we want do modify
                 />
             </BasicModal>
