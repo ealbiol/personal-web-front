@@ -37,7 +37,7 @@ export function UserItem(props) {
         onOpenCloseModal();
     }
 
-
+    // Function to activate user modal
     const openDeactivateActivateConfirm = () => {
         setIsDelete(false);
         setConfirmMessage(user.active
@@ -47,6 +47,7 @@ export function UserItem(props) {
         onOpenCloseConfirm();
     };
 
+    // Function to activate user
     const onActivateDeactivate = async () => {
         try {
             await userController.updateUser(accessToken, user._id, {
@@ -58,6 +59,24 @@ export function UserItem(props) {
             console.error(error);
         }
     };
+
+    //Function to delete user window
+    const openDeleteConfirm = () => {
+        setIsDelete(true);
+        setConfirmMessage(`Eliminate user ${user.email}`);
+        onOpenCloseConfirm();
+    }
+
+    //Function to call to delete user
+    const onDelete = async () => {
+        try {
+            await userController.deleteUser(accessToken, user._id);
+            onReload();
+            onOpenCloseConfirm();
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     return (
         <>
@@ -78,7 +97,7 @@ export function UserItem(props) {
                     <Button icon color={user.active ? "orange" : "teal"} onClick={openDeactivateActivateConfirm}>
                         <Icon name={user.active ? "ban" : "check"} />
                     </Button>
-                    <Button icon color="red">
+                    <Button icon color="red" onClick={openDeleteConfirm}>
                         <Icon name="trash" />
                     </Button>
                 </div>
@@ -97,7 +116,7 @@ export function UserItem(props) {
             <Confirm
                 open={showConfirm}
                 onCancel={onOpenCloseConfirm}
-                onConfirm={isDelete ? () => console.log("Confirm Delete",) : onActivateDeactivate}
+                onConfirm={isDelete ? onDelete : onActivateDeactivate}
                 content={confirmMessage}
                 size="mini"
             />
