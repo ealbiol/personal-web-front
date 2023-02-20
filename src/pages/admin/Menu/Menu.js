@@ -50,7 +50,7 @@ export function Menu() {
         title="Creating new menu"
       >
         {/*We pass the function onReload so that the list of menus is reloaded when creating a new menu*/}
-        <MenuForm close={onOpenCloseModal} onReload={onReload} />
+        <MenuForm onClose={onOpenCloseModal} onReload={onReload} />
       </BasicModal>
     </>
   )

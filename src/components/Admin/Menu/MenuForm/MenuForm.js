@@ -3,7 +3,7 @@ import { Form, Dropdown, Input } from "semantic-ui-react";
 import { useFormik } from "formik";
 import { initialValues, validationSchema } from "./MenuForm.form";
 import { Menu } from "../../../../api";
-import { ENV } from "../../../../utils";
+import { useAuth } from '../../../../hooks';
 import "./MenuForm.scss";
 
 const menuCotroller = new Menu();
@@ -11,6 +11,7 @@ const menuCotroller = new Menu();
 
 export function MenuForm(props) {
     const { onClose, onReload, menu } = props;
+    const { accessToken } = useAuth();
 
     const formik = useFormik({
         initialValues: initialValues(),
@@ -18,7 +19,21 @@ export function MenuForm(props) {
         validateOnChange: false,
         onSubmit: async (formValue) => {
             try {
-                console.log(formValue);
+                const data = {
+                    title: formValue.title,
+                    path: `${formValue.protocol}${formValue.path}`,
+                    order: formValue.order,
+                    active: formValue.active
+                };
+                
+                if(menu){
+                    console.log("Update menu");
+                } else {
+                    await menuCotroller.createMenu(accessToken, data)
+                }
+
+                onReload();
+                onClose();
             } catch (error) {
                 console.error(error);
             }

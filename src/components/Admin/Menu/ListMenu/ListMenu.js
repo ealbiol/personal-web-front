@@ -9,7 +9,7 @@ const menuController = new Menu();
 
 
 export function ListMenu(props) {
-    const { active } = props; //Active prop giving back active or unactive menus.
+    const { active, reload } = props; //Active prop giving back active or unactive menus.
 
     const [menus, setMenus] = useState(null);
 
@@ -27,7 +27,7 @@ export function ListMenu(props) {
                 console.error(error);
             }
         })()
-    }, [active]) //Everytime prop active changes value it renders all again.
+    }, [active, reload]) //Everytime prop active changes value it renders all again.
 
     //If there are no menus return
     if (!menus) return <Loader active inline="centered" />
