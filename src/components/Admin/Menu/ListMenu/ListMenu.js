@@ -19,7 +19,7 @@ export function ListMenu(props) {
             try {
                 // Cleaning previous data to generate new data
                 setMenus(null);
-                // Getting active menus when prop active is true and getting inactive menus when false
+                // Petition: Getting active menus when prop active is true and getting inactive menus when false
                 const response = await menuController.getMenu(active);
                 // Saving the data so that it can be used.
                 setMenus(response)
