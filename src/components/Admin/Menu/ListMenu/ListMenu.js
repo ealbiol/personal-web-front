@@ -9,7 +9,7 @@ const menuController = new Menu();
 
 
 export function ListMenu(props) {
-    const { active, reload } = props; //Active prop giving back active or unactive menus.
+    const { active, reload, onReload } = props; //Active prop giving back active or unactive menus.
 
     const [menus, setMenus] = useState(null);
 
@@ -35,7 +35,7 @@ export function ListMenu(props) {
     if (size(menus) === 0) return "There are no menus"
 
     return map(menus, (menu) => (
-        <MenuItem key={menu._id} menu={menu} />
+        <MenuItem key={menu._id} menu={menu} onReload={onReload}/>
     ))
 
 }

@@ -80,8 +80,8 @@ export class User {
         }
     };
 
-    //FUNCTION TO UPDATE USERS / PATCH
-    async updateUser(accessToken, idUser, userData) {
+    //FUNCTION TO UPDATE USER / PATCH
+    async updateUser(accessToken, idUser, userData) { //userData is the user data of the user to updat
         try {
             const data = userData;
             if (!data.password) {

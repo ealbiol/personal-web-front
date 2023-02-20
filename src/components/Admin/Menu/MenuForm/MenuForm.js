@@ -6,15 +6,16 @@ import { Menu } from "../../../../api";
 import { useAuth } from '../../../../hooks';
 import "./MenuForm.scss";
 
-const menuCotroller = new Menu();
+const menuController = new Menu();
 
 
 export function MenuForm(props) {
     const { onClose, onReload, menu } = props;
     const { accessToken } = useAuth();
 
+
     const formik = useFormik({
-        initialValues: initialValues(),
+        initialValues: initialValues(menu),
         validationSchema: validationSchema(),
         validateOnChange: false,
         onSubmit: async (formValue) => {
@@ -25,11 +26,11 @@ export function MenuForm(props) {
                     order: formValue.order,
                     active: formValue.active
                 };
-                
-                if(menu){
-                    console.log("Update menu");
+
+                if (menu) {
+                    await menuController.updateMenu(accessToken, menu._id, data)
                 } else {
-                    await menuCotroller.createMenu(accessToken, data)
+                    await menuController.createMenu(accessToken, data)
                 }
 
                 onReload();
