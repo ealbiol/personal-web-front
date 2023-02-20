@@ -28,6 +28,7 @@ export function MenuForm(props) {
                 };
 
                 if (menu) {
+                    data.path = formValue.path;
                     await menuController.updateMenu(accessToken, menu._id, data)
                 } else {
                     await menuController.createMenu(accessToken, data)
