@@ -29,7 +29,7 @@ export function ListMenu(props) {
         })()
     }, [active, reload]) //Everytime prop active changes value it renders all again.
 
-    //If there are no menus return
+    //If there are no menus return Loader (spinner)
     if (!menus) return <Loader active inline="centered" />
     //If array of users is 0 return message about there are no users
     if (size(menus) === 0) return "There are no menus"

@@ -31,7 +31,9 @@ export function ListUsers(props) {
         })()
     }, [usersActive, reload]);
 
+    //If there are no users return Loader (spinner)
     if (!users) return <Loader active inline="centered" />
+    
     if (size(users) === 0) return "There are no users"
 
     //Mapping all users

@@ -1,5 +1,8 @@
 // COMPONENT LIST COURSES
 import React, { useState, useEffect } from 'react';
+import { Loader } from "semantic-ui-react";
+import { size, map } from "lodash";
+import { CourseItem } from "../CourseItem";
 import { Course } from "../../../../api";
 
 const courseController = new Course();
@@ -21,9 +24,20 @@ export function ListCourses() {
         })()
     }, [])
 
+    //If courses does not obtain any course return loader (spinner)
+    if (!courses) return <Loader active inline="centered" />
+    //Message to be returned if there are no courses
+    if (size(courses) === 0) return "There are no courses"
+
     return (
         <div>
-            <h2>List Courses</h2>
+            {map(courses, (course) => (
+                <CourseItem key={course._id} course={course} />
+            ))}
+
+            <div>
+                {/*Pagination to be added*/}
+            </div>
         </div>
     )
 }
