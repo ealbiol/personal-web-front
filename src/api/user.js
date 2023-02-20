@@ -1,4 +1,4 @@
-// AUTHENTICATION USER API
+// USER API. USER FUNCTIONS
 import { ENV } from "../utils";
 
 export class User {
@@ -59,7 +59,7 @@ export class User {
         }
     }
 
-    // FUNCTION TO GET USERS / GET
+    // FUNCTION TO GET ALL USERS / GET
     async getUsers(accessToken, active = undefined) {
         try {
             const url = `${this.baseApi}/${ENV.API_ROUTES.USERS}?active=${active}`;
@@ -78,7 +78,7 @@ export class User {
         } catch (error) {
             throw error;
         }
-    }
+    };
 
     //FUNCTION TO UPDATE USERS / PATCH
     async updateUser(accessToken, idUser, userData) {
