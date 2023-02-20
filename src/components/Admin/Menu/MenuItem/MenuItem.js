@@ -33,7 +33,7 @@ export function MenuItem(props) {
         onOpenCloseModal();
     };
 
-    // Function in Modal activate/deactivate
+    // Function Modal activate/deactivate menu
     const openDeactivateActivateConfirm = () => {
         setIsDelete(false);
         setConfirmMessage(
@@ -42,6 +42,24 @@ export function MenuItem(props) {
                 `Activate menu ${menu.title} ?`
         );
         onOpenCloseConfirm();
+    }
+
+    // Function Modal delete menu
+    const openDeleteConfirm = () => {
+        setIsDelete(true);
+        setConfirmMessage(`Delete menu ${menu.title} ?`)
+        onOpenCloseConfirm();
+    }
+
+    // Function delete menu
+    const onDelete = async () => {
+       try {
+        await menuController.deleteMenu(accessToken, menu._id);
+        onReload();
+        onOpenCloseConfirm();
+       } catch (error) {
+        console.error(error);
+       }
     }
 
     // Function action to activate/deactivate
@@ -78,7 +96,7 @@ export function MenuItem(props) {
                     >
                         <Icon name={menu.active ? "ban" : "check"} />
                     </Button>
-                    <Button icon color="red">
+                    <Button icon color="red" onClick={openDeleteConfirm}>
                         <Icon name="trash" />
                     </Button>
                 </div>
@@ -99,7 +117,7 @@ export function MenuItem(props) {
             <Confirm
                 open={showConfirm}
                 onCancel={onOpenCloseConfirm}
-                onConfirm={isDelete ? console.log("Delete") : onActivateDeactivate} //If isDelete state is true is because user wants to delete, otherwise user wants to deactivate.
+                onConfirm={isDelete ? onDelete : onActivateDeactivate} //If isDelete state is true is because user wants to delete, otherwise user wants to deactivate.
                 content={confirmMessage}
                 size="mini"
 

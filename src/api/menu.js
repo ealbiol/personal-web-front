@@ -55,8 +55,8 @@ export class Menu {
             const params = {
                 method: "PATCH",
                 headers: {
-                    "Content-Type":"application/json",
-                    Authorization:`Bearer ${accessToken}`,
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${accessToken}`,
                 },
                 body: JSON.stringify(data),
             };
@@ -72,4 +72,25 @@ export class Menu {
         }
     }
 
+
+    // FUNCTION DELETE MENU / DELETE
+    async deleteMenu(accessToken, idMenu) {
+        try {
+            const url = `${this.baseApi}/${ENV.API_ROUTES.MENU}/${idMenu}`;
+            const params = {
+                method: "DELETE",
+                headers: {
+                    Authorization: `Bearer ${accessToken}`
+                },
+            };
+            const response = await fetch(url, params);
+            const result = await response.json();
+
+            if (response.status !== 200) throw result;
+
+            return result;
+        } catch (error) {
+            throw error
+        }
+    }
 }
