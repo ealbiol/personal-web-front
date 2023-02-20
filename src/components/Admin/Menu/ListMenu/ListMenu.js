@@ -1,8 +1,9 @@
 // LIST MENU COMPONENT
 import React, { useState, useEffect } from 'react';
 import { Loader } from "semantic-ui-react";
-import { size } from "lodash";
+import { size, map } from "lodash";
 import { Menu } from "../../../../api"; // Exporting class Menu
+import { MenuItem } from "../MenuItem"
 
 const menuController = new Menu();
 
@@ -17,7 +18,7 @@ export function ListMenu(props) {
         (async () => {
             try {
                 // Cleaning previous data to generate new data
-                setMenus(null); 
+                setMenus(null);
                 // Getting active menus when prop active is true and getting inactive menus when false
                 const response = await menuController.getMenu(active);
                 // Saving the data so that it can be used.
@@ -33,7 +34,8 @@ export function ListMenu(props) {
     //If array of users is 0 return message about there are no users
     if (size(menus) === 0) return "There are no menus"
 
-    return (
-        <h2>List Menu</h2>
-    )
+    return map(menus, (menu) => (
+        <MenuItem key={menu._id} menu={menu} />
+    ))
+
 }
