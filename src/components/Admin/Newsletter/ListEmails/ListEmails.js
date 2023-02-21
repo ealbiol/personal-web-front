@@ -17,6 +17,13 @@ export function ListEmails() {
   const [pagination, setPagination] = useState(null);
   // State to change page
   const [page, setPage] = useState(1);
+
+  //State of reload
+  const [reload, setReload] = useState(false);
+
+  //Function onReload so that emails list gets rerendered when changing state since we passed the state reload in the array of the useEffect.
+  const onReload = () => setReload((prevState) => !prevState);
+
   const { accessToken } = useAuth();
 
   useEffect(() => {
@@ -39,7 +46,7 @@ export function ListEmails() {
         console.error(error);
       }
     })()
-  }, [page])
+  }, [page, reload])
 
   //Function to change page. It receives the data of the pages
   const changePage = (_, data) => {
@@ -55,7 +62,7 @@ export function ListEmails() {
     //Rendering all emails and each one is rendered inside EmailItem component
     <div className="list-emails" >
       {map(emails, (email) => (
-        <EmailItem key={email._id} email={email} />
+        <EmailItem key={email._id} email={email} onReload={onReload} />
       ))}
 
       <div className='list-emails__pagination'>

@@ -1,12 +1,32 @@
 // EMAIL ITEM COMPONENT
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Icon, Confirm } from "semantic-ui-react";
+import { Newsletter } from "../../../../api";
+import { useAuth } from "../../../../hooks";
 import "./EmailItem.scss";
+
+const newsletterController = new Newsletter();
 
 //This component is being rendered with a map to obtain a list of items.
 export function EmailItem(props) {
 
-    const { email } = props;
+    const { email, onReload } = props;
+
+    const [showConfirm, setShowConfirm] = useState(false);
+    const { accessToken } = useAuth();
+
+    const onOpenCloseConfirm = () => setShowConfirm((prevState) => !prevState);
+
+    const onDelete = async () => {
+        try {
+            await newsletterController.deleteEmail(accessToken, email._id);
+
+            onReload();
+            onOpenCloseConfirm();
+        } catch (error) {
+            console.error(error);
+        }
+    }
 
     return (
         <>
@@ -14,11 +34,19 @@ export function EmailItem(props) {
                 <span>{email.email}</span>
 
                 <div>
-                    <Button icon color="red">
+                    <Button icon color="red" onClick={onOpenCloseConfirm}>
                         <Icon name="trash" />
                     </Button>
                 </div>
             </div>
+
+            <Confirm
+                open={showConfirm}
+                onCancel={onOpenCloseConfirm}
+                onConfirm={onDelete}
+                content={`Delete ${email.email} ?`}
+                size="mini"
+            />
         </>
     )
 }
