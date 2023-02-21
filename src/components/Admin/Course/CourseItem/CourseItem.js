@@ -2,21 +2,42 @@
 import React, { useState } from 'react';
 import { Image, Button, Icon, Confirm } from "semantic-ui-react";
 import { BasicModal } from "../../../Shared";
-import { CourseForm } from "../CourseForm"
 import { ENV } from "../../../../utils";
+import { Course } from "../../../../api";
+import { useAuth } from "../../../../hooks";
+import { CourseForm } from "../CourseForm";
 import "./CourseItem.scss";
 
-export function CourseItem(props) {
-    const { course, onReload } = props;
+const courseController = new Course();
 
+export function CourseItem(props) {
+
+    const { course, onReload } = props;
     const [showModal, setShowModal] = useState(false);
     const [titleModal, setTitleModal] = useState("");
+    // Delete course modal/confirm state
+    const [showConfirm, setShowConfirm] = useState(false);
+
+    const { accessToken } = useAuth();
 
     const onOpenCloseModal = () => setShowModal((prevState) => !prevState);
+    // Delete course modal/confirm function
+    const onOpenCloseConfirm = () => setShowConfirm((prevState) => !prevState);
 
     const openUpdateCourse = () => {
         setTitleModal(`Update ${course.title} ?`)
         onOpenCloseModal();
+    }
+
+    //Function delete course
+    const onDelete = async () => {
+        try {
+            await courseController.deleteCourse(accessToken, course._id);
+            onReload();
+            onOpenCloseConfirm();
+        } catch (error) {
+            console.error(error);
+        }
     }
 
     return (
@@ -41,7 +62,7 @@ export function CourseItem(props) {
                     <Button icon primary onClick={openUpdateCourse}>
                         <Icon name="pencil" />
                     </Button>
-                    <Button icon color="red">
+                    <Button icon color="red" onClick={onOpenCloseConfirm}>
                         <Icon name="trash" />
                     </Button>
                 </div>
@@ -57,6 +78,14 @@ export function CourseItem(props) {
                     course={course}
                 />
             </BasicModal>
+
+            <Confirm
+                open={showConfirm}
+                onCancel={onOpenCloseConfirm}
+                onConfirm={onDelete}
+                content={`Delete course ${course.title}`}
+                size="mini"
+            />
         </>
     )
 }
