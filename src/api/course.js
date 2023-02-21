@@ -6,7 +6,6 @@ export class Course {
     // FUNCTION CREATE COURSE / POST
     async createCourse(accessToken, data) {
         try {
-          console.log("ENTERING");
           const formData = new FormData();
           Object.keys(data).forEach((key) => {
             formData.append(key, data[key]);
@@ -27,12 +26,10 @@ export class Course {
     
           const response = await fetch(url, params);
           const result = await response.json();
-          console.log("RESPONSE RESULT", response,result)
           if (response.status !== 200) throw result;
     
           return result;
         } catch (error) {
-            console.log("ERROR", error);
           throw error;
         }
       }

@@ -21,7 +21,6 @@ export function ListCourses(props) {
 
     useEffect(() => {
         (async () => {
-            console.log("ONRELOAD")
             try {
                 // Petition to get courses
                 const response = await courseController.getCourses({ page, limit: 5 });
