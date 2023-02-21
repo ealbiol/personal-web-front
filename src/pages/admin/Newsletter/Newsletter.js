@@ -1,5 +1,6 @@
 import React from 'react';
 import { Tab } from "semantic-ui-react";
+import { ListEmails } from "../../../components/Admin/Newsletter";
 
 export function Newsletter() {
 
@@ -7,7 +8,7 @@ export function Newsletter() {
         {
             render: () => (
                 <Tab.Pane attached={false}>
-                    <p>Emails List</p>
+                    <ListEmails/>
                 </Tab.Pane>
             ),
         }
@@ -15,7 +16,7 @@ export function Newsletter() {
 
     return (
         <div className='newsletter-page'>
-            <Tab panes={panes}/>
+            <Tab panes={panes} />
         </div>
     )
 }
