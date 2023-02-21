@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Tab, Button } from "semantic-ui-react";
 import { BasicModal } from "../../../components/Shared";
-import { ListCourses } from "../../../components/Admin/Course"
+import { ListCourses, CourseForm } from "../../../components/Admin/Course"
 import "./Courses.scss";
 
 export function Courses() {
@@ -29,7 +29,7 @@ export function Courses() {
                 close={onOpenCloseModal}
                 title="Create course"
             >
-                <p>Creating Course Form</p>
+                <CourseForm onClose={onOpenCloseModal}/>
             </BasicModal>
         </>
     )
