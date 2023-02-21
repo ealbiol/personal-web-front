@@ -9,6 +9,7 @@ import "./MenuItem.scss";
 
 const menuController = new Menu();
 
+//This component is being rendered with a map to obtain a list of items.
 export function MenuItem(props) {
     const { menu, onReload } = props; //Obtaining menu prop from ListMenu.js. Each Menu item is a menu.
     const { accessToken } = useAuth();

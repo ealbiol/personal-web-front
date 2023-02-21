@@ -33,7 +33,7 @@ export function ListMenu(props) {
     if (!menus) return <Loader active inline="centered" />
     //If array of users is 0 return message about there are no users
     if (size(menus) === 0) return "There are no menus"
-
+    //Rendering all menus and each one is rendered inside MenuItem component
     return map(menus, (menu) => (
         <MenuItem key={menu._id} menu={menu} onReload={onReload}/>
     ))

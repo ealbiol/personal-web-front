@@ -10,6 +10,7 @@ import "./CourseItem.scss";
 
 const courseController = new Course();
 
+//This component is being rendered with a map to obtain a list of items.
 export function CourseItem(props) {
 
     const { course, onReload } = props;

@@ -49,6 +49,7 @@ export function ListCourses(props) {
 
     return (
         <div className='list-courses'>
+            {/*Rendering all courses and each one is rendered inside CourseItem component*/}
             {map(courses, (course) => (
                 <CourseItem key={course._id} course={course} onReload={onReload} />
             ))}
