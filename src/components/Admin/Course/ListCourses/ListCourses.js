@@ -8,7 +8,9 @@ import "./ListCourses.scss";
 
 const courseController = new Course();
 
-export function ListCourses() {
+export function ListCourses(props) {
+
+    const { reload } = props;
 
     //State to store all courses:
     const [courses, setCourses] = useState(false);
@@ -19,6 +21,7 @@ export function ListCourses() {
 
     useEffect(() => {
         (async () => {
+            console.log("ONRELOAD")
             try {
                 // Petition to get courses
                 const response = await courseController.getCourses({ page, limit: 5 });
@@ -33,12 +36,12 @@ export function ListCourses() {
                 console.error(error);
             }
         })()
-    }, [page]); //when page value changes all renders.
+    }, [page, reload]); //when page value changes all renders.
 
     // Function change page
     const changePage = (_, data) => {
         setPage(data.activePage) // Telling what page to render.
-    } 
+    }
 
     //If courses does not obtain any course return loader (spinner)
     if (!courses) return <Loader active inline="centered" />
