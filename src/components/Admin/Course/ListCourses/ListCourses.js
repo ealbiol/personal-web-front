@@ -10,7 +10,7 @@ const courseController = new Course();
 
 export function ListCourses(props) {
 
-    const { reload } = props;
+    const { reload, onReload } = props;
 
     //State to store all courses:
     const [courses, setCourses] = useState(false);
@@ -50,7 +50,7 @@ export function ListCourses(props) {
     return (
         <div className='list-courses'>
             {map(courses, (course) => (
-                <CourseItem key={course._id} course={course} />
+                <CourseItem key={course._id} course={course} onReload={onReload} />
             ))}
 
             <div className='list-courses__pagination'>

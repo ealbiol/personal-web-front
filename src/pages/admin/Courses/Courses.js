@@ -22,7 +22,7 @@ export function Courses() {
                 </div>
 
                 <Tab.Pane attached={false}>
-                    <ListCourses reload={reload} />
+                    <ListCourses reload={reload} onReload={onReload} />
                 </Tab.Pane>
             </div>
 

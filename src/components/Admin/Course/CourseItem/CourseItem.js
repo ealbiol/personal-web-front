@@ -1,17 +1,29 @@
 // COURSE ITEM COMPONENT
-import React from 'react';
+import React, { useState } from 'react';
 import { Image, Button, Icon, Confirm } from "semantic-ui-react";
+import { BasicModal } from "../../../Shared";
+import { CourseForm } from "../CourseForm"
 import { ENV } from "../../../../utils";
 import "./CourseItem.scss";
 
 export function CourseItem(props) {
-    const { course } = props;
+    const { course, onReload } = props;
+
+    const [showModal, setShowModal] = useState(false);
+    const [titleModal, setTitleModal] = useState("");
+
+    const onOpenCloseModal = () => setShowModal((prevState) => !prevState);
+
+    const openUpdateCourse = () => {
+        setTitleModal(`Update ${course.title} ?`)
+        onOpenCloseModal();
+    }
 
     return (
         <>
             <div className='course-item'>
                 <div className='course-item__info'>
-                    <Image src={`${ENV.BASE_PATH}/${course.miniature}`}/>
+                    <Image src={`${ENV.BASE_PATH}/${course.miniature}`} />
                     <div>
                         <p>{course.title}</p>
                     </div>
@@ -26,7 +38,7 @@ export function CourseItem(props) {
                     >
                         <Icon name="eye" />
                     </Button>
-                    <Button icon primary>
+                    <Button icon primary onClick={openUpdateCourse}>
                         <Icon name="pencil" />
                     </Button>
                     <Button icon color="red">
@@ -34,6 +46,17 @@ export function CourseItem(props) {
                     </Button>
                 </div>
             </div>
+            <BasicModal
+                show={showModal}
+                close={onOpenCloseModal}
+                title={titleModal}
+            >
+                <CourseForm
+                    onClose={onOpenCloseModal}
+                    onReload={onReload}
+                    course={course}
+                />
+            </BasicModal>
         </>
     )
 }

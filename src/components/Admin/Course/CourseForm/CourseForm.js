@@ -4,7 +4,8 @@ import { Form, Image } from "semantic-ui-react";
 import { useDropzone } from "react-dropzone";
 import { useFormik } from "formik";
 import { Course } from "../../../../api";
-import { useAuth } from "../../../../hooks"
+import { useAuth } from "../../../../hooks";
+import { ENV } from "../../../../utils";
 import { initialValues, validationSchema } from "./CourseForm.form";
 import "./CourseForm.scss";
 
@@ -12,19 +13,26 @@ const courseController = new Course();
 
 export function CourseForm(props) {
 
-    const { onClose, onReload } = props;
+    const { onClose, onReload, course } = props;
 
     const { accessToken } = useAuth();
 
     const formik = useFormik({
-        initialValues: initialValues(),
+        initialValues: initialValues(course),
         validationSchema: validationSchema(),
         validateOnChange: false,
         onSubmit: async (formValue) => {
             try {
-                await courseController.createCourse(accessToken, formValue);
+                if (!course) { //if course doesn't exist we create course.
+                    await courseController.createCourse(accessToken, formValue);
+                } else { //if course exists we update course.
+                    await courseController.updateCourse(
+                        accessToken,
+                        course._id,
+                        formValue
+                    );
+                }
                 onClose();
-
                 onReload();
             } catch (error) {
                 console.error(error);
@@ -50,6 +58,8 @@ export function CourseForm(props) {
     const getMiniature = () => {
         if (formik.values.file) { //if user has uploaded a file
             return formik.values.miniature;
+        } else if (formik.values.miniature) {
+            return `${ENV.BASE_PATH}/${formik.values.miniature}`
         }
         return null;
     }
@@ -118,7 +128,8 @@ export function CourseForm(props) {
                 fluid
                 loading={formik.isSubmitting}
             >
-                Create course
+                {/*If course doesn't exist it means we are creating course and if it exists we are updating course*/}
+                {!course ? "Create course" : "Update course"}
             </Form.Button>
         </Form>
     )
