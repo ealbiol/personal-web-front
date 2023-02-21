@@ -7,7 +7,7 @@ export class Newsletter {
     // GET EMAILS / GET
     async getEmails(accessToken, page = 1, limit = 10) {
         try {
-            const pageFilter = `page${page}`;
+            const pageFilter = `page=${page}`;
             const limitFilter = `limit=${limit}`;
 
             const url = `${this.baseApi}/${ENV.API_ROUTES.NEWSLETTER}?${pageFilter}&${limitFilter}`;
