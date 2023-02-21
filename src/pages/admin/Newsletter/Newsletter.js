@@ -1,9 +1,21 @@
-import React from 'react'
+import React from 'react';
+import { Tab } from "semantic-ui-react";
 
 export function Newsletter() {
+
+    const panes = [
+        {
+            render: () => (
+                <Tab.Pane attached={false}>
+                    <p>Emails List</p>
+                </Tab.Pane>
+            ),
+        }
+    ]
+
     return (
-        <div>
-            <h1>We are in Newsletter</h1>
+        <div className='newsletter-page'>
+            <Tab panes={panes}/>
         </div>
     )
 }
