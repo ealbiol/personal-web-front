@@ -1,6 +1,9 @@
 // COMPONENT LIST POSTS
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
+import { Loader } from "semantic-ui-react";
+import { map, size } from "lodash";
 import { Post } from "../../../../api";
+import { PostItem } from "../PostItem";
 import "./ListPost.scss";
 
 const postController = new Post();
@@ -23,10 +26,22 @@ export function ListPost() {
 
     }, [])
 
+    //Adding spinner while waiting posts
+    if (!posts) return <Loader active inline="centered" />
+    //If there are 0 posts
+    if (size(posts) === 0) return "There are no posts"
 
     return (
-        <div>
-            <h2>List Posts</h2>
+        <div className='list-post'>
+            {/*Rendering all posts adding each one in component PostItem with map method.*/}
+            {map(posts, (post) => (
+                //Rendering each post from posts inside the component PostItem
+                <PostItem key={post._id} post={post} />
+            ))}
+
+            <div>
+                {/*PAGINATION*/}
+            </div>
         </div>
     )
 }
