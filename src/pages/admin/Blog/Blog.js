@@ -1,5 +1,6 @@
 import React from 'react';
 import { Tab, Button } from "semantic-ui-react";
+import {ListPost} from "../../../components/Admin/Post";
 import "./Blog.scss";
 
 export function Blog() {
@@ -8,7 +9,7 @@ export function Blog() {
     {
       render: () => (
         <Tab.Pane attached={false}>
-          <p>List Posts</p>
+          <ListPost/>
         </Tab.Pane>
       ),
     }
