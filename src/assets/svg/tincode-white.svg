@@ -50,6 +50,12 @@
 </g>
 <g>
 	<g>
+	  <!--<rect x="0" y="0" width="100%" height="100%" fill="transparent"/>
+	<text x="58%" y="60%" dominant-baseline="middle" text-anchor="middle" font-size="90" font-weight="800" font-family="Lato,'Helvetica Neue',Arial,Helvetica,sans-serif" fill="#fff" style="border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;">
+		EdCode
+	</text>-->
+	<!--TinCode letters-->
+	
 		<path class="st2" d="M196.74,47.39v11.13h-52.66V47.39H196.74z M177.46,47.39v63.97h-14.19V47.39H177.46z"/>
 		<path class="st2" d="M215.01,45.35c2.72,0,4.08,1.39,4.08,4.17v4.91c0,2.78-1.36,4.17-4.08,4.17h-5.93
 			c-2.72,0-4.08-1.39-4.08-4.17v-4.91c0-2.78,1.36-4.17,4.08-4.17H215.01z M218.81,65.56v45.8h-13.63v-45.8H218.81z"/>
@@ -87,6 +93,7 @@
 			C466.84,65.13,471.39,64.36,477.01,64.36z"/>
 	</g>
 </g>
+<!--ICON-->
 <g>
 	<g>
 		<g>
@@ -106,3 +113,14 @@
 		c3.09,3.34,2.99,8.52-0.22,11.74l-15.77,15.83C96.58,105.64,94.73,97.78,93.1,93.91z"/>
 </g>
 </svg>
+
+<!--<svg viewBox="0 0 200 50" xmlns="http://www.w3.org/2000/svg">
+  <rect x="0" y="0" width="100%" height="100%" fill="transparent"/>
+  <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="30" font-weight="600" font-family="Helvetica, Arial, sans-serif" fill="#fff" style="border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;">
+    EdCode
+  </text>
+</svg>-->
+
+
+
+

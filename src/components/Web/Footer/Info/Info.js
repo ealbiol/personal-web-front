@@ -10,10 +10,12 @@ export function Info() {
     return (
         <div className='footer-info'>
             <Icon.LogoWhite className='logo' />
-            <p>Getting into web development, enjoying each step
+            <p>
+                Getting into web development, enjoying each step
                 creating all kind of projects and letting my imagination
-                run
+                run.
             </p>
+            
 
             {/*Rendering socialMedia array*/}
             {map(socialData, (social)=>(

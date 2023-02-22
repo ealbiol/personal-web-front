@@ -16,8 +16,7 @@ export function ClientLayout(props) {
             <div className='client-layout__footer'>
                 <Container>
                     <Footer.Info/>
-                    <span>INFO</span>
-                    <span>MENU</span>
+                    <Footer.Menu/>
                     <span>NEWSLETTER</span>
                 </Container>
                 <Container>
