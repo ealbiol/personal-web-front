@@ -10,7 +10,7 @@ const postController = new Post();
 
 export function ListPost(props) {
 
-    const {reload} = props;
+    const {reload, onReload} = props;
 
     const [posts, setPosts] = useState(null);
     // Pagination data: limit, page, total, pages.
@@ -53,7 +53,7 @@ export function ListPost(props) {
             {/*Rendering all posts adding each one in component PostItem with map method.*/}
             {map(posts, (post) => (
                 //Rendering each post from posts inside the component PostItem
-                <PostItem key={post._id} post={post} />
+                <PostItem key={post._id} post={post} onReload={onReload} />
             ))}
 
             <div className="list-post__pagination">

@@ -1,13 +1,19 @@
 // POST ITEM COMPONENT
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Icon, Confirm } from "semantic-ui-react";
 import { Link } from "react-router-dom";
+import { BasicModal } from "../../../Shared";
+import { PostForm } from "../PostForm";
 import "./PostItem.scss";
 
 
 export function PostItem(props) {
 
-    const { post } = props;
+    const { post, onReload } = props;
+
+    const [showModal, setShowModal] = useState(false);
+
+    const onOpenCloseModal = () => setShowModal((prevState) => !prevState);
 
     return (
         <>
@@ -25,14 +31,27 @@ export function PostItem(props) {
                     >
                         <Icon name="eye" />
                     </Button>
-                    <Button icon primary>
+                    <Button icon primary onClick={onOpenCloseModal}>
                         <Icon name="pencil" />
                     </Button>
                     <Button icon color="red">
                         <Icon name="trash" />
                     </Button>
-                </div>  
+                </div>
             </div>
+
+            <BasicModal
+                show={showModal}
+                close={onOpenCloseModal}
+                title="Edit post"
+                size="large"
+            >
+                <PostForm
+                    onClose={onOpenCloseModal}
+                    onReload={onReload}
+                    post={post}
+                />
+            </BasicModal>
         </>
     )
 }
