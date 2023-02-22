@@ -8,7 +8,9 @@ import "./ListPost.scss";
 
 const postController = new Post();
 
-export function ListPost() {
+export function ListPost(props) {
+
+    const {reload} = props;
 
     const [posts, setPosts] = useState(null);
     // Pagination data: limit, page, total, pages.
@@ -21,7 +23,7 @@ export function ListPost() {
     useEffect(() => {
         (async () => {
             try {
-                const response = await postController.getPosts(page, 2); //current page we want and how many posts per page
+                const response = await postController.getPosts(page); //current page we want.
                 setPosts(response.docs) // Only storing the posts without the pagination data.
                 setPagination({
                     limit: response.limit,
@@ -34,7 +36,7 @@ export function ListPost() {
             }
         })()
 
-    }, [page]) // Every time the state page changes its value renders all page and will render to the desired page.
+    }, [page, reload]) // Every time the state page changes its value renders all page and will render to the desired page.
 
     // Function change page
     const changePage = (_, data) => {
