@@ -13,6 +13,8 @@ export function MenuForm(props) {
     const { onClose, onReload, menu } = props;
     const { accessToken } = useAuth();
 
+    // SEEING PRESSED MENU
+    //console.log(menu);
 
     const formik = useFormik({
         initialValues: initialValues(menu),

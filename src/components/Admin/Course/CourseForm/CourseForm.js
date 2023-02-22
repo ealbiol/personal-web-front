@@ -17,6 +17,9 @@ export function CourseForm(props) {
 
     const { accessToken } = useAuth();
 
+    // SEEING PRESSED COURSE
+    //console.log(course);
+
     const formik = useFormik({
         initialValues: initialValues(course),
         validationSchema: validationSchema(),

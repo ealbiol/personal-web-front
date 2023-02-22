@@ -6,7 +6,7 @@ import { Editor } from "@tinymce/tinymce-react";
 import { useFormik } from "formik";
 import { Post } from "../../../../api";
 import { useAuth } from "../../../../hooks";
-import {ENV} from "../../../../utils";
+import { ENV } from "../../../../utils";
 import { initialValues, validationSchema } from "./PostForm.form";
 import "./PostForm.scss";
 
@@ -18,6 +18,8 @@ export function PostForm(props) {
 
     const { accessToken } = useAuth();
 
+    // SEEING PRESSED POST
+    //console.log(post);
     const formik = useFormik({
         initialValues: initialValues(post),
         validationSchema: validationSchema(),
@@ -55,7 +57,7 @@ export function PostForm(props) {
     const getMiniature = () => {
         if (formik.values.file) {
             return formik.values.miniature;
-        } else if (formik.values.miniature){
+        } else if (formik.values.miniature) {
             return `${ENV.BASE_PATH}/${formik.values.miniature}`
         }
         return null;
