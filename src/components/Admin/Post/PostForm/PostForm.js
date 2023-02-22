@@ -4,10 +4,18 @@ import { Form, Image } from "semantic-ui-react";
 import { useDropzone } from "react-dropzone";
 import { Editor } from "@tinymce/tinymce-react";
 import { useFormik } from "formik";
+import { Post } from "../../../../api";
+import { useAuth } from "../../../../hooks";
 import { initialValues, validationSchema } from "./PostForm.form";
 import "./PostForm.scss";
 
-export function PostForm() {
+const postController = new Post();
+
+export function PostForm(props) {
+
+    const {onClose, onReload} = props;
+
+    const { accessToken } = useAuth();
 
     const formik = useFormik({
         initialValues: initialValues(),
@@ -15,7 +23,10 @@ export function PostForm() {
         validateOnChange: false,
         onSubmit: async (formValue) => {
             try {
-                console.log(formValue);
+                await postController.createPost(accessToken, formValue)
+
+                onReload();
+                onClose();
             } catch (error) {
                 console.error(error);
             }
@@ -35,7 +46,7 @@ export function PostForm() {
 
     //Function to get miniature
     const getMiniature = () => {
-        if(formik.values.file){
+        if (formik.values.file) {
             return formik.values.miniature;
         }
         return null;
