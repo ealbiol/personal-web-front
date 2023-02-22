@@ -2,6 +2,7 @@
 import React, { useCallback } from 'react';
 import { Form, Image } from "semantic-ui-react";
 import { useDropzone } from "react-dropzone";
+import { Editor } from "@tinymce/tinymce-react";
 import "./PostForm.scss";
 
 export function PostForm() {
@@ -29,7 +30,25 @@ export function PostForm() {
                 <Form.Input name="path" placeholder="Post Path" />
             </Form.Group>
 
+
             {/*Post Editor*/}
+            <Editor
+        init={{
+          height: 400,
+          menubar: true,
+          plugins: [
+            "advlist autolink lists link image charmap print preview anchor",
+            "searchreplace visualblocks code fullscreen",
+            "insertdatetime media table paste code help wordcount",
+          ],
+          toolbar:
+            "undo redo | formatselect | bold italic backcolor | \
+             alignleft aligncenter alignright alignjustify | \
+             bullist numlist outdent indent | removeformat | help",
+        }}
+      />
+
+
             <div className='post-form__miniature' {...getRootProps()}>
                 <input {...getInputProps()} />
                 {/*if getMiniature gives back content we take it*/}
