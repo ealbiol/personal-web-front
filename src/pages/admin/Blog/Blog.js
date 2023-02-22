@@ -1,9 +1,30 @@
-import React from 'react'
+import React from 'react';
+import { Tab, Button } from "semantic-ui-react";
+import "./Blog.scss";
 
-export  function Blog() {
+export function Blog() {
+
+  const panes = [
+    {
+      render: () => (
+        <Tab.Pane attached={false}>
+          <p>List Posts</p>
+        </Tab.Pane>
+      ),
+    }
+  ]
+
   return (
-    <div>
-        <h1>We are in the Blog</h1>
-    </div>
+    <>
+      <div className='blog-page'>
+        <div className='blog-page__add'>
+          <Button primary>
+            New Post
+          </Button>
+        </div>
+        <Tab menu={{ secondary: true }} panes={panes} />
+
+      </div>
+    </>
   )
 }
