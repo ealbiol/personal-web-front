@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { Loader, Pagination } from "semantic-ui-react";
+import { map } from "lodash";
 import { Post } from "../../../../api";
 import "./ListPosts.scss";
 
@@ -19,9 +21,31 @@ export function ListPosts() {
         })()
     }, [])
 
+    // Spinner before posts loading
+    if (!posts) return <Loader active inline="centered" />
+
     return (
-        <div>
-            <h2>ListPosts</h2>
+        <div className='list-posts-web'>
+            <div className='list'>
+                {map(posts, (post) => (
+                    <div key={post._id} className="item">
+                        <span>{post.title}</span>
+                    </div>
+                ))}
+            </div>
+
+            <div className='pagination'>
+                <Pagination
+                    totalPages={10}
+                    defaultActivePage={1}
+                    ellipsisItem={null}
+                    firstItem={null}
+                    lastItem={null}
+                    secondary
+                    pointing
+                />
+
+            </div>
         </div>
     )
 }
