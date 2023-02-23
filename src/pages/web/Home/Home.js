@@ -1,5 +1,5 @@
 import React from 'react';
-import { Banner, HomeCourses, HowMyCoursesWork } from "../../../components/Web";
+import { Banner, HomeCourses, HowMyCoursesWork, Reviews } from "../../../components/Web";
 
 export function Home() {
     return (
@@ -7,6 +7,7 @@ export function Home() {
             <Banner/>
             <HomeCourses/>
             <HowMyCoursesWork/>
+            <Reviews/>
         </div>
     )
 }
