@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Container, Loader } from "semantic-ui-react";
 //Obtaining url path
 import { useParams } from "react-router-dom";
 import { Post as PostController } from "../../../api";
@@ -15,7 +16,7 @@ export function Post() {
   //console.log(post);
 
   //useParams hooks gives us the params/path of the post. For example "nodejs-explanation". It would come from /blog/nodejs-explanation.
-  console.log(useParams());
+  //console.log(useParams());
   // What we ahcieve is that if we enter a certain post with its url we get the data of that post
   const { path } = useParams();
 
@@ -30,10 +31,17 @@ export function Post() {
     })()
   }, [path])
 
+  if (!post) return <Loader active inline="centered" />
 
   return (
-    <div>
-      <h1>We are in Post</h1>
-    </div>
+    <Container className='post'>
+      <h1 className='title'>{post.title}</h1>
+
+      <div
+        className='content'
+        // Rendering post content (content was added with an editor allowing styles as bold, etc)
+        dangerouslySetInnerHTML={{ __html: post.content }}
+      />
+    </Container>
   )
 }
