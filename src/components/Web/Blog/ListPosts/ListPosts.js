@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Loader, Pagination } from "semantic-ui-react";
 import { map } from "lodash";
 import { Post } from "../../../../api";
+import { ListPostItem } from "../ListPostItem"
 import "./ListPosts.scss";
 
 const postController = new Post();
@@ -29,7 +30,7 @@ export function ListPosts() {
             <div className='list'>
                 {map(posts, (post) => (
                     <div key={post._id} className="item">
-                        <span>{post.title}</span>
+                        <ListPostItem post={post}/>
                     </div>
                 ))}
             </div>
