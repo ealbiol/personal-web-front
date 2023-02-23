@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Image, Button } from "semantic-ui-react";
 import { map } from "lodash";
-import { Course } from "../../../api";
+import { Course as CourseController } from "../../../api";
 import { image } from "../../../assets";
+import { Course } from "../../../components/Web/Courses"
 import "./Courses.scss";
 
-const courseController = new Course();
+const courseController = new CourseController();
 
 export function Courses() {
 
@@ -37,10 +38,9 @@ export function Courses() {
       <div className='courses'>
         {map(courses, (course) => (
           <div key={course._id} className='courses__item'>
-            <span>{course.title}</span>
+            <Course course={course} />
           </div>
         ))}
-
       </div>
 
       <div className='more'>
