@@ -9,18 +9,34 @@ const postController = new Post();
 
 export function ListPosts() {
     const [posts, setPosts] = useState(null);
+    const [pagination, setPagination] = useState();
+    const [page, setPage] = useState(1);
+
     //Posts
     //console.log(posts);
+
     useEffect(() => {
         (async () => {
             try {
-                const response = await postController.getPosts(1);
+                const response = await postController.getPosts(page, 2);
                 setPosts(response.docs)
+                setPagination({
+                    limit: response.limit,
+                    page: response.page,
+                    pages: response.pages,
+                    total: response.total,
+                })
             } catch (error) {
                 console.error(error);
             }
         })()
-    }, [])
+    }, [page])
+
+    //Function change page
+    const changePage = (_, data) => {
+        const newPage = data.activePage;
+        setPage(newPage)
+    }
 
     // Spinner before posts loading
     if (!posts) return <Loader active inline="centered" />
@@ -30,20 +46,21 @@ export function ListPosts() {
             <div className='list'>
                 {map(posts, (post) => (
                     <div key={post._id} className="item">
-                        <ListPostItem post={post}/>
+                        <ListPostItem post={post} />
                     </div>
                 ))}
             </div>
 
             <div className='pagination'>
                 <Pagination
-                    totalPages={10}
-                    defaultActivePage={1}
+                    totalPages={pagination.pages}
+                    defaultActivePage={pagination.page}
                     ellipsisItem={null}
                     firstItem={null}
                     lastItem={null}
                     secondary
                     pointing
+                    onPageChange={changePage}
                 />
 
             </div>
