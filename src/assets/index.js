@@ -16,6 +16,7 @@ import avatar05 from "./png/avatar_05.png";
 import avatar06 from "./png/avatar_06.png";
 
 
+
 //Svg's within Icon const:
 const Icon = {
     LogoWhite
