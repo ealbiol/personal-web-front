@@ -1,4 +1,4 @@
-const SERVER_IP = "https://webpersonalcourse.herokuapp.com/:40222";
+const SERVER_IP = "webpersonalcourse.herokuapp.com/40222";
 
 export const ENV = {
     BASE_PATH: `http://${SERVER_IP}`,
