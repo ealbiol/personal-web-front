@@ -40,7 +40,7 @@ export function TopBar() {
                     <div className='menu'>
                         {/*Rendering menus coming from server call*/}
                         {map(menu, (item) => (
-                            <a key={item._id} href={item.path}>
+                            <a key={item._id} href={item?.path}>
                                 {item.title}
                             </a>
                         ))}
