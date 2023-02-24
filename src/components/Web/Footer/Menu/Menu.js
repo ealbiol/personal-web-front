@@ -37,6 +37,9 @@ export function Menu() {
                     <Link to="#">
                         <Icon name="node" /> Nodejs
                     </Link>
+                    <Link to="/admin">
+                        <Icon name="home" /> Admin
+                    </Link>
                 </Grid.Column>
             </Grid>
         </div>

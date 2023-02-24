@@ -4,6 +4,7 @@ import { Banner, HomeCourses, HowMyCoursesWork, Reviews } from "../../../compone
 export function Home() {
     return (
         <div>
+            <a />
             <Banner/>
             <HomeCourses/>
             <HowMyCoursesWork/>
