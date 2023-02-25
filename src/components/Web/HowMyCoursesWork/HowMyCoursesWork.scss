@@ -61,6 +61,10 @@
 @media only screen and (max-width: 600px) {
     .how-my-courses-work {
 
+        > h4 {
+            margin-bottom: 15%;
+        }
+
         &__items {
             display: grid;
             grid-template-columns: 1fr;

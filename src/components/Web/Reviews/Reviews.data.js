@@ -22,25 +22,25 @@ export const reviewsData = [
     comment:
       "Si te gustan los cursos que profundizan en la materia, te lo recomiendo. El profesor explica de forma completa todos los conceptos necesarios para trabajar con grid. Un gran curso.",
   },
-  {
-    userName: "Marc Perez",
-    userType: "UI/UX",
-    avatar: image.avatar04,
-    comment:
-      "Empecé el curso sin saber nada de React Native y creo que lo finalizo teniendo un nivel de conocimiento como para embarcarme en realizar mi primera aplicación.",
-  },
-  {
-    userName: "Jesus Cruz",
-    userType: "Frontend Developer",
-    avatar: image.avatar05,
-    comment:
-      "Me ha parecido un buen curso, las explicaciones muy claras y lo que enseña me ha sido muy útil para la aplicación que me habían encargado.",
-  },
-  {
-    userName: "Francisco Garcia",
-    userType: "FullStack Developer",
-    avatar: image.avatar06,
-    comment:
-      "Aprendes todo lo que promete el video de inicio y te da la capacidad para después crear tus propias apps. Gracias Agus por crear este curso, tenes mucho talento para explicar y se nota que te encanta hacerlo.",
-  },
+  //{
+  //  userName: "Marc Perez",
+  //  userType: "UI/UX",
+  //  avatar: image.avatar04,
+  //  comment:
+  //    "Empecé el curso sin saber nada de React Native y creo que lo finalizo teniendo un nivel de conocimiento como para embarcarme en realizar mi primera aplicación.",
+  //},
+  //{
+  //  userName: "Jesus Cruz",
+  //  userType: "Frontend Developer",
+  //  avatar: image.avatar05,
+  //  comment:
+  //    "Me ha parecido un buen curso, las explicaciones muy claras y lo que enseña me ha sido muy útil para la aplicación que me habían encargado.",
+  //},
+  //{
+  //  userName: "Francisco Garcia",
+  //  userType: "FullStack Developer",
+  //  avatar: image.avatar06,
+  //  comment:
+  //    "Aprendes todo lo que promete el video de inicio y te da la capacidad para después crear tus propias apps. Gracias Agus por crear este curso, tenes mucho talento para explicar y se nota que te encanta hacerlo.",
+  //},
 ];
