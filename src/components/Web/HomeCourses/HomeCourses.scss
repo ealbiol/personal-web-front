@@ -51,13 +51,31 @@
             }
         }
     }
-&__more {
-    display: flex;
-    justify-content: center;
-    padding: 20px 0;
+    &__more {
+        display: flex;
+        justify-content: center;
+        padding: 20px 0;
 
-    > .ui.button {
-        width: 200px;
+        > .ui.button {
+            width: 200px;
+        }
+    }
+}
+
+
+
+// BREAKPOINTS
+
+@media only screen and (max-width: 600px) {
+.home-courses{
+    &__more {
+        display: flex;
+        justify-content: center;
+        padding: 20px 0;
+
+        > .ui.button {
+            width: 200px;
+        }
     }
 }
 }

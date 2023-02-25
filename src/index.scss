@@ -12,3 +12,7 @@ code {
     monospace;
 }
 
+// Removing Unwanted white space on right side in mobile view
+html,body{
+  overflow-x: hidden;
+}
