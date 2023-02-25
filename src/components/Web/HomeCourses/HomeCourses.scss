@@ -51,15 +51,15 @@
             }
         }
     }
-&__more {
-    display: flex;
-    justify-content: center;
-    padding: 20px 0;
+    &__more {
+        display: flex;
+        justify-content: center;
+        padding: 20px 0;
 
-    > .ui.button {
-        width: 200px;
+        > .ui.button {
+            width: 200px;
+        }
     }
-}
 }
 
 // BREAKPOINTS
@@ -83,13 +83,18 @@
                     height: 100%;
                 }
                 > div {
+                    padding: 0;
+                    text-align: center;
+
                     > span {
                         &:first-of-type {
                             font-weight: bold;
                             font-size: 16px;
                             margin-top: 8px;
                         }
-                        
+                        &:last-of-type {
+                            margin-bottom: 16px;
+                        }
                     }
                 }
             }
@@ -102,7 +107,7 @@
             padding: 20px 0;
     
             > .ui.button {
-                width: 200px;
+                width: 300px;
             }
         }
     }
