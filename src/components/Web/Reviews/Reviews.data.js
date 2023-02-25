@@ -2,25 +2,24 @@ import { image } from "../../../assets";
 
 export const reviewsData = [
   {
-    userName: "Alonso Campos",
-    userType: "Frontend Developer",
-    avatar: image.avatar01,
+    userName: "Stehan Diehl",
+    userType: "CEO at Alliantum GmbH",
+    avatar: image.stephan,
     comment:
-      "Un curso excelente, el profesor explica detalladamente como funciona react native y también como hacer componente por componente, he buscado muchos cursos de react native pero ninguno me ha enseñado tanto como este, ahora estoy desarrollando mi propia aplicación sin ningún tipo de problema gracias al curso.",
+      "Eduard worked for our company on several projects, and I was privileged to call him my coworker. He always gave 100 percent to the team and the projects.",
   },
   {
-    userName: "Valentina Rubio",
-    userType: "FullStack Developer",
-    avatar: image.avatar02,
+    userName: "Carlos Mayo Lamelas",
+    userType: "Director at Alliantum GmbH",
+    avatar: image.carlos,
     comment:
-      "El contenido del curso es muy completo y de necesitar cualquier dato adicional el profesor está super pendiente para responderlo. Ya tengo creado mi E-commerce con WordPress y gran parte de la información necesaria la obtuve del curso.",
+    "I have worked with Eduard as Managing Director at Alliantum SL. During the time we shared in that project Eduard was a professional of great value and his knowledge as a full-stack programmer was of great value to meet our objectives in a timely manner. In addition to the usual work, Eduard always contributed his opinion and solutions with a high degree of respect and intelligence. Eduard has been a pleasure to work with and his work has been recognised both internally and externally. I think it is also important to mention that Eduard integrated perfectly into the team and was highly valued by all his colleagues thanks to his personality.Without a doubt, if the opportunity arises, I will count on him again in my team and I would like to thank him publicly for his effort and the work he has done." ,
   },
   {
-    userName: "David Ramiro",
+    userName: "Rafael Camón Vílchez",
     userType: "Backend Developer",
-    avatar: image.avatar03,
-    comment:
-      "Si te gustan los cursos que profundizan en la materia, te lo recomiendo. El profesor explica de forma completa todos los conceptos necesarios para trabajar con grid. Un gran curso.",
+    avatar: image.rafael,
+    comment: "Eduard is a highly motivated developer. He is really hungry to learn about new technologies, and increase his background with new tech stacks and programming languages. He started working with us as junior developer, in the time we were working together, he learned a lot about frontend development. He is able to handle the interaction between code and design, and gets along very well with responsive design and some CSS tweaks if needed. He is the kind of worker who wants to understand why and how something works. He always tries to see the logic behind source code, he never uses a copy-paste from Stack Overflow without understanding what a chunk of code does. He is good at concentrating on a task until it is finished. Finally, he has been living in several places and countries, he is open-minded and a very good teammate.",
   },
   //{
   //  userName: "Marc Perez",

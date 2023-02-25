@@ -14,6 +14,10 @@ import avatar03 from "./png/avatar_03.png";
 import avatar04 from "./png/avatar_04.png";
 import avatar05 from "./png/avatar_05.png";
 import avatar06 from "./png/avatar_06.png";
+import stephan from "./jpg/stephan.jpg";
+import carlos from "./jpg/carlos.jpg";
+import rafael from "./jpg/rafael.jpg";
+
 
 
 
@@ -34,6 +38,9 @@ const image = {
     avatar04,
     avatar05,
     avatar06,
+    stephan,
+    carlos,
+    rafael
 }
 
 export { Icon, image };

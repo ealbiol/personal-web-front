@@ -7,7 +7,7 @@ import "./Reviews.scss";
 export function Reviews() {
     return (
         <Container className='reviews'>
-            <h2>Join the 150k students</h2>
+            <h2>Recommendations</h2>
 
             <div className='reviews__list'>
                 {map(reviewsData, (review, index) => (

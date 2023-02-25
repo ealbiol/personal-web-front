@@ -28,7 +28,7 @@ export function HomeCourses() {
 
     return (
         <Container className='home-courses'>
-            <h2>Learn and improve your skills</h2>
+            <h2>Dev Skills</h2>
 
             <div className='home-courses__all-courses'>
                 {/*Rendering courses*/}
