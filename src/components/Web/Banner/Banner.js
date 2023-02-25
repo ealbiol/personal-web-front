@@ -7,12 +7,14 @@ export function Banner() {
         <div className='banner'>
             <Container>
                 <h1>
-                    Learn new <br /> web technologies
+                    Eduard Albiol
+                    <br />
+                    {/*to my site!*/}
                 </h1>
                 <h2>
-                    Through practical courses, updated and created by
+                    Get to know a bit more about my 
                     <br />
-                    highly experienced professionals.
+                    career and goals
                 </h2>
             </Container>
 
