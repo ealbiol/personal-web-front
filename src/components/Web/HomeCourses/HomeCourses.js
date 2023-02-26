@@ -16,7 +16,7 @@ export function HomeCourses() {
     useEffect(() => {
         (async () => {
             try {
-                const response = await courseController.getCourses({ limit: 6 });
+                const response = await courseController.getCourses({ limit: 10 });
                 //console.log(response);
                 //Storing courses received from calling function getCourses
                 setCourses(response.docs) //Only getting courses and not pagination data.
@@ -45,7 +45,7 @@ export function HomeCourses() {
 
             <div className='home-courses__more'>
                 <Button as={Link} to="/courses" primary>
-                    Explore more
+                    More
                 </Button>
             </div>
         </Container>

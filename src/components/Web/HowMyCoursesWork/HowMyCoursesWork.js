@@ -7,8 +7,8 @@ import "./HowMyCoursesWork.scss";
 export function HowMyCoursesWork() {
     return (
         <Container className='how-my-courses-work'>
-            <h2>How the courses work?</h2>
-            <h4>Each course contains multimedia content</h4>
+            <h2>A bit more about me...</h2>
+            <h4>Because soft skills are key :)</h4>
 
             <div className='how-my-courses-work__items'>
                 {map(itemsData, (item, index) => (

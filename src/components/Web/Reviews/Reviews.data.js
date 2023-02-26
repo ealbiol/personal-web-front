@@ -17,7 +17,7 @@ export const reviewsData = [
   },
   {
     userName: "Rafael Camón Vílchez",
-    userType: "Backend Developer",
+    userType: "React Developer ar Genasys EU",
     avatar: image.rafael,
     comment: "Eduard is a highly motivated developer. He is really hungry to learn about new technologies, and increase his background with new tech stacks and programming languages. He started working with us as junior developer, in the time we were working together, he learned a lot about frontend development. He is able to handle the interaction between code and design, and gets along very well with responsive design and some CSS tweaks if needed. He is the kind of worker who wants to understand why and how something works. He always tries to see the logic behind source code, he never uses a copy-paste from Stack Overflow without understanding what a chunk of code does. He is good at concentrating on a task until it is finished. Finally, he has been living in several places and countries, he is open-minded and a very good teammate.",
   },

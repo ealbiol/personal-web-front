@@ -49,8 +49,7 @@ export function Courses() {
     <Container className='courses-page'>
       <Image src={image.AcademyLogo} />
       <h2>
-        In this website you can find the best online developer
-        courses. Join and start your career as a fronted or backed.
+        In 
       </h2>
 
       <div className='courses'>
